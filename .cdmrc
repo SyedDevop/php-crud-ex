@@ -1,0 +1,2 @@
+tabs: ['index.php']
+terminals: ['php -S 0.0.0.0:1337']

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>CRUD Testing</title>
+  </head>
+
+  <!-- <script> -->
+  <!--   (async () => { -->
+  <!--     const res = await fetch("delete.php", { -->
+  <!--       method: "DELETE", -->
+  <!--       headers: { -->
+  <!--         "Content-Type": "application/json", -->
+  <!--       }, -->
+  <!--       body: JSON.stringify({ -->
+  <!--         docId: "123456", -->
+  <!--         name: "Syed uzair ahmed", -->
+  <!--       }), -->
+  <!--     }); -->
+  <!--     if (res.ok) { -->
+  <!--       const data = await res.json(); -->
+  <!--       document.getElementById("status").innerText = `Status: ${data.status}`; -->
+  <!--       document.getElementById( -->
+  <!--         "message", -->
+  <!--       ).innerText = `Message: ${data.message}`; -->
+  <!--       document.getElementById("name").innerText = `Name: ${data.name}`; -->
+  <!--     } -->
+  <!--   })(); -->
+  <!-- </script> -->
+
+  <body>
+    <h1>TODO APP</h1>
+    <form id="todo-form">
+      <input type="text" name="todo" id="todo" placeholder="Add Todo" />
+      <button type="submit">Add</button>
+    </form>
+    <div id="todo-list">
+      <ul></ul>
+    </div>
+  </body>
+  <script src="script.js" type="module"></script>
+</html>
