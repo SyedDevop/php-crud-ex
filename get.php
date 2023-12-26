@@ -6,7 +6,12 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+require_once 'db.php';
+
+use MyDB;
+
 if ($method === 'GET') {
+  MyDB();
   echo json_encode(array('status' => '200', 'message' => 'Lis of users retrieved successfully.'));
 } else {
     http_response_code(400);

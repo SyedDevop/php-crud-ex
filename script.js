@@ -13,8 +13,10 @@ todoForm.addEventListener("submit", async (e) => {
 
   if (res.ok) {
     const data = await res.json();
-    todosList.children[0].innerHTML += `<li class="todo-item" ><p onclick="toggle(this)">${data.todo}</p>
-          <button class="delete-todo" data-id="${data.id}">Delete</button>
+    todosList.children[0].innerHTML += `
+          <li class="todo-item">
+            <p onclick="toggle(this)">${data.todo}</p>
+            <button class="delete-todo" data-id="${data.id}">Delete</button>
           </li>`;
     todoForm.reset();
   } else {
