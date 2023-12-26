@@ -13,7 +13,7 @@ todoForm.addEventListener("submit", async (e) => {
 
   if (res.ok) {
     const data = await res.json();
-    todosList.children[0].innerHTML += `<li><p class="todo-item">${data.todo}</p>
+    todosList.children[0].innerHTML += `<li class="todo-item" ><p onclick="toggle(this)">${data.todo}</p>
           <button class="delete-todo" data-id="${data.id}">Delete</button>
           </li>`;
     todoForm.reset();
@@ -21,3 +21,7 @@ todoForm.addEventListener("submit", async (e) => {
     alert("Something went wrong posting todo");
   }
 });
+
+function toggle(liElement) {
+  liElement.classList.toggle("completed");
+}

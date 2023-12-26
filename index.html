@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>CRUD Testing</title>
   </head>
-
+  <!-- Ui ref https://p912n.csb.app/ -->
   <!-- <script> -->
   <!--   (async () => { -->
   <!--     const res = await fetch("delete.php", { -->
@@ -32,14 +41,22 @@
   <!-- </script> -->
 
   <body>
-    <h1>TODO APP</h1>
-    <form id="todo-form">
-      <input type="text" name="todo" id="todo" placeholder="Add Todo" />
-      <button type="submit">Add</button>
-    </form>
-    <div id="todo-list">
-      <ul></ul>
-    </div>
+    <main id="app">
+      <header>
+        <h1>Todo List</h1>
+        <h5>A simple PHP Todo List App</h5>
+        <hr />
+      </header>
+      <div id="todo-list">
+        <ul></ul>
+      </div>
+      <form id="todo-form">
+        <label for="todo">New todo</label>
+        <input type="text" name="todo" id="todo" placeholder="Add Todo" />
+        <button type="submit">Add Todo</button>
+      </form>
+    </main>
   </body>
-  <script src="script.js" type="module"></script>
+  <script></script>
+  <script src="script.js"></script>
 </html>
