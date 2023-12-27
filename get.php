@@ -8,15 +8,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 require_once 'db.php';
 
-use MyDB;
 
 if ($method === 'GET') {
-  MyDB();
-  echo json_encode(array('status' => '200', 'message' => 'Lis of users retrieved successfully.'));
+  $res =  get_all_todos();
+  echo json_encode(array('status' => '200', 'message' => 'Lis of todos retrieved successfully.', 'data' => $res));
 } else {
-    http_response_code(400);
-    $result['status'] = '400';
-    $result['message'] = "Expected GET request, got $method";
-    echo json_encode($result);
+  http_response_code(400);
+  $result['status'] = '400';
+  $result['message'] = "Expected GET request, got $method";
+  echo json_encode($result);
 }
-?>

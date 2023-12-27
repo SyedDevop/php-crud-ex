@@ -9,20 +9,18 @@ require_once('db.php');
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'POST') {
-    $todo = $_POST["todo"];
-    $id = $_POST["id"];
-    // Check if decoding was successful
-    if ($todo !== null && $id !== null) {
-        $res = add_todo($id, $todo);
-        if (!$res) {
-            http_response_code(400);
-            echo json_encode(array('status' => '400', 'message' => 'Invalid JSON data', 'data' => $_POST));
-        }
+    // Get the JSON data from the request body
+    $json_data = file_get_contents("php://input");
+    // Decode the JSON data
+    $data = json_decode($json_data);
 
+
+    if ($data !== null && isset($data->state) && isset($data->id)) {
+        $state = $data->state;
+        $id = $data->id;
+        $res = update_status($id, $state);
         http_response_code(200);
-        echo json_encode(array('status' => '200',  'todo' => $todo, 'id' => $id));
     } else {
-        // If decoding fails, return an error response
         http_response_code(400);
         echo json_encode(array('status' => '400', 'message' => 'Invalid JSON data', 'data' => $_POST));
     }

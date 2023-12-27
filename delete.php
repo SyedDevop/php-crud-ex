@@ -5,6 +5,7 @@ header("Access-Control-Allow-Methods: DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $method = $_SERVER['REQUEST_METHOD'];
+require_once "db.php";
 
 if ($method === 'DELETE') {
     // Get the raw data from the request body
@@ -16,10 +17,10 @@ if ($method === 'DELETE') {
     // Check if decoding was successful
     if ($json_data !== null) {
         // Access the 'name' field
-        $name = $json_data['name'];
-
+        $id = $json_data['id'];
+        delete_todo($id);
         // Now you can use the $name variable as needed
-        echo json_encode(array('status' => '200', 'message' => 'DELETE request received', 'name' => $name));
+        echo json_encode(array('status' => '200', 'message' => 'DELETE request received', 'name' => $id));
     } else {
         // If decoding fails, return an error response
         http_response_code(400);
@@ -31,4 +32,3 @@ if ($method === 'DELETE') {
     $result['message'] = "Expected DELETE request, got $method";
     echo json_encode($result);
 }
-?>
