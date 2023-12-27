@@ -13,7 +13,6 @@ todoForm.addEventListener("submit", async (e) => {
 
   if (res.ok) {
     const data = await res.json();
-    script.js;
     todosList.children[0].innerHTML += `
           <li class="todo-item">
             <p onclick="toggle(this)" data-id="${data.id}" >${data.todo}</p>

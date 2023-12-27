@@ -97,31 +97,11 @@ header hr {
   transition: opacity 0.4s linear;
 }
 
-.todo-item p.completed::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -0.5rem;
-  display: block;
-  width: 0%;
-  height: 2px;
-  background: #fff;
-  animation: strikeitem 0.5s ease-out 0s forwards;
-}
-
-@keyframes strikeitem {
-  to {
-    width: calc(100% + 1rem);
-  }
-}
-
 .completed {
   opacity: 0.6;
+  text-decoration: line-through;
 }
 
-/*(red) filter: invert(12%) sepia(80%) saturate(7499%) hue-rotate(15deg) brightness(91%) contrast(111%); */
-/*(green) filter: invert(88%) sepia(15%) saturate(6511%) hue-rotate(94deg) brightness(98%) contrast(99%); */
-/*(white) filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(319deg) brightness(103%) contrast(101%); */
 .todo-action {
   display: flex;
   gap: 10px;
