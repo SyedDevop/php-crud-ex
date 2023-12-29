@@ -11,6 +11,7 @@ require_once 'db.php';
 
 if ($method === 'GET') {
   $res =  get_all_todos();
+
   echo json_encode(array('status' => '200', 'message' => 'Lis of todos retrieved successfully.', 'data' => $res));
 } else {
   http_response_code(400);

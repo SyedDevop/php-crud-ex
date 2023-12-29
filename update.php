@@ -15,15 +15,24 @@ if ($method === 'POST') {
     $data = json_decode($json_data);
 
 
-    if ($data !== null && isset($data->state) && isset($data->id)) {
-        $state = $data->state;
-        $id = $data->id;
-        $res = update_status($id, $state);
-        http_response_code(200);
-    } else {
-        http_response_code(400);
-        echo json_encode(array('status' => '400', 'message' => 'Invalid JSON data', 'data' => $_POST));
+  if ($data !== null &&  isset($data->id)) {
+    $id = $data->id;
+    $state = $data->state;
+    $toso = $data->todo;
+
+    if (isset($state) && !isset($toso)) {
+      $res = update_status($id, $state);
+      http_response_code(200);
+    } else if (isset($toso) && !isset($state)){
+      $res = update_todo($id, $toso);
+    }else{
+      http_response_code(400);
+      echo json_encode(array('status' => '400', 'message' => 'Invalid JSON data', 'data' => $_POST));
     }
+  } else {
+    http_response_code(400);
+    echo json_encode(array('status' => '400', 'message' => 'Invalid JSON data', 'data' => $_POST));
+  }
 } else {
     http_response_code(400);
     $result['status'] = '400';

@@ -87,7 +87,5 @@ create_table();
     </form>
   </main>
 </body>
-<script></script>
 <script src="script.js"></script>
-
 </html>

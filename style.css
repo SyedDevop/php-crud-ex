@@ -116,9 +116,10 @@ header hr {
     brightness(103%) contrast(101%);
 }
 
-.edit-todo:hover {
+.edit-todo:hover,
+.editing {
   filter: invert(69%) sepia(58%) saturate(543%) hue-rotate(97deg)
-    brightness(88%) contrast(88%);
+    brightness(88%) contrast(88%) !important;
 }
 
 .delete-todo:hover {

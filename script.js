@@ -12,20 +12,8 @@ todoForm.addEventListener("submit", async (e) => {
   });
 
   if (res.ok) {
-    const data = await res.json();
-    todosList.children[0].innerHTML += `
-          <li class="todo-item">
-            <p onclick="toggle(this)" data-id="${data.id}" >${data.todo}</p>
-            <div class="todo-action" data-id="${data.id}">
-            <button class="edit-todo">
-            <img src="edit.svg" alt="edit" />
-            </button>
-            <button class="delete-todo">
-            <img src="delete.svg" alt="delete" />
-            </button>
-            </div>
-          </li>`;
     todoForm.reset();
+    location.reload();
   } else {
     alert("Something went wrong posting todo");
   }
@@ -37,16 +25,16 @@ async function toggle(liElement) {
   }
   liElement.classList.toggle("completed");
 
-  // isCompleted = liElement.classList.contains("completed");
-  // const { id } = liElement.dataset;
-  // const res = await fetch("update-state.php", {
-  //   method: "POST",
-  //   body: JSON.stringify({ id, state: isCompleted }),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // console.log(res);
+  isCompleted = liElement.classList.contains("completed");
+  const { id } = liElement.dataset;
+  const res = await fetch("update.php", {
+    method: "POST",
+    body: JSON.stringify({ id, state: isCompleted }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log(res);
 }
 
 async function deleteTodo(id) {
@@ -65,25 +53,37 @@ async function deleteTodo(id) {
   });
 }
 
+// Toggle edit Todo element<p>.
+/**
+ *@param {HTMLElement} - Edit icon button.
+ */
 function editTodo(btnElement) {
+  btnElement.classList.toggle("editing");
   const pElement = btnElement.parentNode.parentNode.firstElementChild;
   pElement.contentEditable =
     pElement.contentEditable === "true" ? "false" : "true";
   pElement.focus();
 }
 
-const editableElements = document.querySelectorAll("[contenteditable]");
-editableElements.forEach(function (element) {
-  const observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      if (mutation.type === "characterData") {
-        console.log(mutation);
+// Listen for todo edit events and update database.
+Array.from(document.querySelectorAll("[contenteditable]")).forEach(
+  function (element) {
+    element.addEventListener("beforeinput", async (event) => {
+      if (event.inputType === "insertParagraph") {
+        event.preventDefault();
+        const pElement = event.target;
+        const id = pElement.dataset["id"];
+        pElement.contentEditable =
+          pElement.contentEditable === "true" ? "false" : "true";
+        const res = await fetch("update.php", {
+          method: "POST",
+          body: JSON.stringify({ id, todo: pElement.innerText }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(res);
       }
     });
-  });
-  observer.observe(element, {
-    attributes: true,
-    characterData: true,
-    subtree: true,
-  });
-});
+  },
+);
