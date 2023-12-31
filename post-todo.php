@@ -19,7 +19,7 @@ if ($method === 'POST') {
             echo json_encode(array('status' => '400', 'message' => 'Invalid JSON data', 'data' => $_POST));
         }
 
-        http_response_code(200);
+    http_response_code(200);
         echo json_encode(array('status' => '200',  'todo' => $todo, 'id' => $id));
     } else {
         // If decoding fails, return an error response
@@ -28,7 +28,5 @@ if ($method === 'POST') {
     }
 } else {
     http_response_code(400);
-    $result['status'] = '400';
-    $result['message'] = "Expected PUT request, got $method";
-    echo json_encode($result);
+    echo json_encode(array('status' => '400', 'message' => 'Expected PUT request got' . $method));
 }

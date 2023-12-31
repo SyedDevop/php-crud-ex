@@ -88,4 +88,5 @@ create_table();
   </main>
 </body>
 <script src="script.js"></script>
+
 </html>

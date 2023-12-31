@@ -72,9 +72,14 @@ Array.from(document.querySelectorAll("[contenteditable]")).forEach(
       if (event.inputType === "insertParagraph") {
         event.preventDefault();
         const pElement = event.target;
+        const editButton = pElement.nextElementSibling.firstElementChild;
+
         const id = pElement.dataset["id"];
+        pElement.focus();
         pElement.contentEditable =
           pElement.contentEditable === "true" ? "false" : "true";
+        editButton.classList.toggle("editing");
+
         const res = await fetch("update.php", {
           method: "POST",
           body: JSON.stringify({ id, todo: pElement.innerText }),
